@@ -1,0 +1,118 @@
+//Database name: (GiftGenie) , username: gift , password genie: 
+
+//Create statements for tables: 
+
+CREATE TABLE Userlogins (
+  firstname VARCHAR(100) NOT NULL,
+  lastname VARCHAR(100) NOT NULL,
+  username VARCHAR(100) PRIMARY KEY,
+  phone VARCHAR(50) NOT NULL,
+  email VARCHAR(150),
+  birthdate VARCHAR(150) NOT NULL,
+  PASSWORD VARCHAR(150) NOT NULL,
+  secretanswer VARCHAR(100),
+  cash integer
+);
+
+CREATE TABLE items (
+  ID_of_item INTEGER PRIMARY KEY,
+  item_name VARCHAR(100) NOT NULL,
+  item_description VARCHAR(300) ,
+  item_link VARCHAR(200),
+  gross_price integer
+);
+
+
+CREATE TABLE wishlist_item (
+  username_owner VARCHAR(100) REFERENCES Userlogins(username),
+  ID_of_item INTEGER REFERENCES items(ID_of_item),
+  REMAINPRICE integer,
+  Category VARCHAR(100),
+  PRIMARY KEY (username_owner , ID_of_item )
+);
+
+
+
+CREATE TABLE contribution (
+  username_owner VARCHAR(100) REFERENCES Userlogins(username),
+  ID_of_item INTEGER REFERENCES items(ID_of_item),
+  amount_of_contribution DECIMAL(10,2) NOT NULL,
+  username_contributed VARCHAR(100) REFERENCES Userlogins(username)
+);
+
+CREATE TABLE friendrequest (
+  username_owner VARCHAR(100) REFERENCES Userlogins(username),
+  username_friend VARCHAR(100) REFERENCES Userlogins(username),
+  status VARCHAR(10) NOT NULL DEFAULT 'pending',
+  PRIMARY KEY (username_owner, username_friend)
+);
+
+CREATE TABLE friends (
+  username_owner VARCHAR(100) REFERENCES Userlogins(username),
+  username_friend VARCHAR(100) REFERENCES Userlogins(username),
+  date_added DATE NOT NULL DEFAULT CURRENT_DATE ,
+  PRIMARY KEY (username_owner, username_friend)
+);
+CREATE TABLE NotificationHandling (
+  id BIGINT GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+  username_owner VARCHAR(255),
+  description VARCHAR(255),
+  PRIMARY KEY (id)
+);
+
+
+INSERT INTO ITEMS(ID_OF_ITEM, ITEM_NAME, ITEM_DESCRIPTION, GROSS_PRICE, Category)
+VALUES(3, 'PlayStation5', 'PlayStation PS5 Console – God of War Ragnarök Bundle', 650.00, 'Devices');
+
+INSERT INTO ITEMS(ID_OF_ITEM, ITEM_NAME, ITEM_DESCRIPTION, GROSS_PRICE, Category)
+VALUES(2, 'Apple Mac Pro', 'Apple 2023 MacBook Pro Laptop M2 Pro 10‑core CPU', 1950.00, 'Devices');
+
+INSERT INTO ITEMS(ID_OF_ITEM, ITEM_NAME, ITEM_DESCRIPTION, GROSS_PRICE, Category)
+VALUES(1, 'ASUS ROG STAR', 'ASUS ROG Strix Scar Gaming Laptop, NVIDIA', 1000.00, 'Devices');
+
+INSERT INTO ITEMS(ID_OF_ITEM, ITEM_NAME, ITEM_DESCRIPTION, GROSS_PRICE, Category)
+VALUES(4, 'Laptop Table', 'Monomi Electric Standing Desk, Height Adjustable Desk', 200.00, 'Devices');
+
+INSERT INTO ITEMS(ID_OF_ITEM, ITEM_NAME, ITEM_DESCRIPTION, GROSS_PRICE, Category)
+VALUES(5, 'MT 9020 PC', 'Dell Optiplex 9020, Intel Core i7-4770-3.4 GHz, 32GB Ram', 600.00, 'Devices');
+
+INSERT INTO ITEMS(ID_OF_ITEM, ITEM_NAME, ITEM_DESCRIPTION, GROSS_PRICE, Category)
+VALUES(6, 'Samsong TV', 'SAMSUNG QN32Q60AA 32 Inch QLED HDR 4K UHD', 1100.00, 'Devices');
+
+INSERT INTO ITEMS(ID_OF_ITEM, ITEM_NAME, ITEM_DESCRIPTION, GROSS_PRICE, Category)
+VALUES(7, 'A WAY OUT', 'PlayStation 4', 29, 'GAMES');
+
+INSERT INTO ITEMS(ID_OF_ITEM, ITEM_NAME, ITEM_DESCRIPTION, GROSS_PRICE, Category)
+VALUES(8, 'FARCRY6', 'PlayStation 5', 25, 'GAMES');
+
+INSERT INTO ITEMS(ID_OF_ITEM, ITEM_NAME, ITEM_DESCRIPTION, GROSS_PRICE, Category)
+VALUES(9, 'FIFA23', 'PlayStation 5', 53, 'GAMES');
+
+INSERT INTO ITEMS(ID_OF_ITEM, ITEM_NAME, ITEM_DESCRIPTION, GROSS_PRICE, Category)
+VALUES(10, 'REDDEAD2', 'PlayStation 4', 27, 'GAMES');
+
+INSERT INTO ITEMS(ID_OF_ITEM, ITEM_NAME, ITEM_DESCRIPTION, GROSS_PRICE, Category)
+VALUES(11, 'UNCHARTED', 'PlayStation 5', 36, 'GAMES');
+
+INSERT INTO ITEMS(ID_OF_ITEM, ITEM_NAME, ITEM_DESCRIPTION, GROSS_PRICE, Category)
+VALUES(12, 'CALLOFDUTY', 'PlayStation 5', 75, 'GAMES');
+
+INSERT INTO ITEMS(ID_OF_ITEM, ITEM_NAME, ITEM_DESCRIPTION, GROSS_PRICE, Category)
+VALUES(13, 'Jacket', ': Jackets made from high-quality materials', 50, 'CLOTHES');
+
+INSERT INTO ITEMS(ID_OF_ITEM, ITEM_NAME, ITEM_DESCRIPTION, GROSS_PRICE, Category)
+VALUES(14, 'Jeans', 'Blue jeans of high quality fabric', 45, 'CLOTHES');
+
+INSERT INTO ITEMS(ID_OF_ITEM, ITEM_NAME, ITEM_DESCRIPTION, GROSS_PRICE, Category)
+VALUES(15, 'T-shirt', ' t-shirts are made from high-quality jersey fabric', 30, 'CLOTHES');
+
+INSERT INTO ITEMS(ID_OF_ITEM, ITEM_NAME, ITEM_DESCRIPTION, GROSS_PRICE, Category)
+VALUES(16, 'Red Shoes', 'Make a bold statement with our vibrant red shoes ', 33, 'CLOTHES');
+
+INSERT INTO ITEMS(ID_OF_ITEM, ITEM_NAME, ITEM_DESCRIPTION, GROSS_PRICE, Category)
+VALUES(17, 'Black Shoes', 'A classic choice for any occasion', 42, 'CLOTHES');
+
+INSERT INTO ITEMS(ID_OF_ITEM, ITEM_NAME, ITEM_DESCRIPTION, GROSS_PRICE, Category)
+VALUES(18, 'Heels', 'Step up your fashion game with our stunning heels', 57, 'CLOTHES');
+
+
